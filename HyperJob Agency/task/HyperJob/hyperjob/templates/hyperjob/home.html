@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HyperJob - My profile</title>
+</head>
+<body>
+    <h2>{{ user.username }} profile</h2>
+    <br>
+    {% if request.user.is_staff %}
+        Add your vacancy:
+        <form action="/vacancy/new/" id="vacancy">{% csrf_token %}
+          <textarea rows="4" cols="50" name="description" form="vacancy"></textarea><br>
+          <input type="submit">
+        </form>
+    {% else %}
+        Add your resume:
+        <form action="/resume/new/" method="post" id="resume">{% csrf_token %}
+          <textarea rows="4" cols="50" name="description" form="resume"></textarea><br>
+          <input type="submit">
+        </form>
+    {% endif %}
+</body>
+</html>
